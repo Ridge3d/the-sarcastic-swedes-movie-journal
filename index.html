@@ -7,6 +7,39 @@
   <style>
     * { box-sizing: border-box; }
     html, body { width: 100%; height: 100%; margin: 0; background: #000; overflow: hidden; }
+    body { font-family: Arial, sans-serif; }
+
+    .app-shell {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: minmax(110px, 22vh) 1fr;
+      background: #0e0e0f;
+    }
+
+    .brand-masthead {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #38383f;
+      background: #050505;
+      box-shadow: 0 12px 32px rgba(0,0,0,.5);
+    }
+
+    .brand-masthead img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 28%;
+    }
+
+    .brand-masthead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 45%, rgba(0,0,0,.18));
+    }
 
     #appFrame {
       width: 100%;
@@ -17,7 +50,7 @@
       transition: opacity .55s ease;
     }
 
-    body.intro-active #appFrame { opacity: 0; }
+    body.intro-active .app-shell { opacity: 0; }
 
     .intro-screen {
       position: fixed;
@@ -80,22 +113,30 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
+      .app-shell { grid-template-rows: 105px 1fr; }
+      .brand-masthead img { object-position: center top; }
       .skip-intro { right: 16px; bottom: 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .intro-screen, #appFrame { transition: none; }
+      .intro-screen, .app-shell { transition: none; }
       .intro-loading { animation: none; }
     }
   </style>
 </head>
 <body>
-  <iframe
-    id="appFrame"
-    title="The Sarcastic Swede's Movie Journal"
-    src="The-Sarcastic-Swedes-Movie-Journal-v1.4.html"
-  ></iframe>
+  <main class="app-shell">
+    <header class="brand-masthead">
+      <img src="assets/movie-journal-brand.png" alt="The Sarcastic Swede's Movie Journal">
+    </header>
+
+    <iframe
+      id="appFrame"
+      title="The Sarcastic Swede's Movie Journal"
+      src="The-Sarcastic-Swedes-Movie-Journal-v1.4.html"
+    ></iframe>
+  </main>
 
   <div id="introScreen" class="intro-screen" aria-label="Movie Journal introduction">
     <video id="introVideo" class="intro-video" autoplay muted playsinline preload="auto">
