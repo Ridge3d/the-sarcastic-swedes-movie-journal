@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "The Sarcastic Swede's Movie Journal",
+  "short_name": "Movie Journal",
+  "description": "Watch. Rate. Review. Remember. A personal movie journal for tracking films, ratings, notes, stats, and recommendations.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0e0e0f",
+  "theme_color": "#c62828",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/movie-journal-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/movie-journal-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
