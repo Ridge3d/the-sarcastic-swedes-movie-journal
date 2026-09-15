@@ -1,4 +1,4 @@
-const CACHE_NAME = 'movie-journal-pwa-v1';
+const CACHE_NAME = 'movie-journal-pwa-v2';
 const PRECACHE = [
   '/',
   '/index.html',
