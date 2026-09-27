@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-const MOVIES='movieTrackerWatchedMovies_v2',TV='movieJournalTV_v15',BOOKS='movieJournalBooks_v15',SET='movieJournalStatsSettings_v172',CACHE='movieJournalStatsMeta_v172';
+const MOVIES='movieTrackerWatchedMovies_v2',TV='movieJournalTV_v15',BOOKS='movieJournalBooks_v15',SET='movieJournalStatsSettings_v172',CACHE='movieJournalStatsMeta_v173';
 const read=(k,f=[])=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(f))}catch{return f}},write=(k,v)=>localStorage.setItem(k,JSON.stringify(v)),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const settings=()=>({...{birthDate:'',pagesPerMinute:1,includeReading:true},...read(SET,{})}),fmt=m=>{const h=m/60;return h>=24?`${h.toFixed(0)} hr · ${(h/24).toFixed(1)} days`:`${h.toFixed(1)} hr`},pct=(a,b)=>b>0?`${(a/b*100).toFixed(a/b*100<1?3:2)}%`:'—';
 const years=(a,k)=>a.reduce((o,x)=>{const d=new Date(x[k]||'');if(!isNaN(d)){const y=d.getFullYear();o[y]=(o[y]||0)+1}return o},{}),bars=o=>{const e=Object.entries(o).sort((a,b)=>b[0]-a[0]);if(!e.length)return'<div class="empty">No dated entries yet.</div>';const m=Math.max(...e.map(x=>x[1]),1);return'<div class="life-bars">'+e.map(([y,n])=>`<div class="life-bar"><strong>${y}</strong><div><i style="width:${Math.max(4,n/m*100)}%"></i></div><span>${n}</span></div>`).join('')+'</div>'},stat=(l,v,n='')=>`<div class="life-stat"><span>${esc(l)}</span><strong>${esc(v)}</strong>${n?`<small>${esc(n)}</small>`:''}</div>`;
